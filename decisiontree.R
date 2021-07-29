@@ -1,0 +1,5 @@
+library(rpart)
+fit <- rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare + Embarked, data = train, method = "class")
+prediction <- predict(fit, test, type ="class")
+outdata <- data.frame(PassengerId = test$PassengerId, Survived = prediction)
+write.csv(outdata, file = "/Users/yeyuan/Desktop/titanic/outdata.csv", row.names = FALSE )
